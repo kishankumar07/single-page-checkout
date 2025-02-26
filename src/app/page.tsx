@@ -21,7 +21,7 @@ import Swal from "sweetalert2";
 // Default cart items
 const defaultCartItems = [
   { id: 1, title: "rightGLUE", price: 2.71, quantity: 1, thumbnail: "/jglue.png" },
-  { id: 2, title: "rightTAPES", price: 5.8, quantity: 1, thumbnail: "/rightTapes.webp" }
+  { id: 2, title: "rightTAPES", price: 13.61, quantity: 1, thumbnail: "/rightTapes.webp" }
 ];
 
 
@@ -62,7 +62,7 @@ const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(""); // Store
 
   // Calculate prices
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shippingCharge = subtotal < 10 && subtotal > 0 ? 5 : 0;
+  const shippingCharge = subtotal < 20 && subtotal > 0 ? 5 : 0;
   
   const total = (subtotal + shippingCharge ).toFixed(2);
 
@@ -344,12 +344,12 @@ function PaymentForm({ onSuccess }: { onSuccess: () => void }) {
     )}
 
     {/* Shipping Charge Notification */}
-    {subtotal > 0 && subtotal < 10 && (
+    {subtotal > 0 && subtotal < 20 && (
       <div className="bg-yellow-100 text-yellow-800 p-3 rounded-md flex items-center gap-2 mt-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-.01-7.5A8.25 8.25 0 1012 3a8.25 8.25 0 000 16.5z" />
         </svg>
-        <span className="font-semibold">Orders below $10 will have a $5 shipping fee.</span>
+        <span className="font-semibold">Orders below $20 will have a $5 shipping fee.</span>
       </div>
     )}
 
